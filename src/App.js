@@ -82,6 +82,18 @@ function App() {
                 const { id, name } = response.data;
                 setUserid(response.data.id);
                 setLoginStatus("Hi, " + name);
+
+                axios
+                  .get("https://playlist-exporter.herokuapp.com/playlist", {
+                    params: { userid: id },
+                  })
+                  .then((response) => {
+                    const playList = response.data.data;
+                    setOptions(playList);
+                    setStatus("Ready");
+                    setDisabled(false);
+                  })
+                  .catch((error) => console.error(error));
               })
               .catch((error) => console.error(error));
           }
@@ -91,22 +103,11 @@ function App() {
   }, []);
 
   //This section loads the playlist based on the credentials from the authentication
-  (() => {
-    if (userid) {
-      axios
-        .get("https://playlist-exporter.herokuapp.com/playlist", {
-          params: { userid },
-        })
-        .then((response) => {
-          const playList = response.data.data;
-          setOptions(playList);
-          setStatus("Ready");
-          setDisabled(false);
-        })
-        .catch((error) => console.error(error));
-    } else {
-    }
-  })(userid);
+  // (() => {
+  //   if (userid) {
+  //   } else {
+  //   }
+  // })(userid);
 
   //This function loads tracks upon clicking the Fetch Title function
   const loadTracks = (e) => {

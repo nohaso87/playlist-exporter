@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import cors from "cors";
 
 import {
   BrowserRouter as Router,

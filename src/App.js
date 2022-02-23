@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import cors from "cors";
-import "dotenv";
 
 import {
   BrowserRouter as Router,
@@ -53,12 +52,9 @@ function App() {
 
   const selectElement = useRef();
 
-  const LINK = "https://playlist-exporter.herokuapp.com/";
-  const link = process.env.LINK || 3001;
-
   //This function redirects to obtain code for authentication
   const login = () => {
-    window.location.href = "link/";
+    window.location.href = "https://playlist-exporter.herokuapp.com/";
   };
 
   //This authenticates the user
@@ -68,7 +64,9 @@ function App() {
     if (!id) {
     } else {
       axios
-        .get("link/token", { params: { code: id } })
+        .get("https://playlist-exporter.herokuapp.com/token", {
+          params: { code: id },
+        })
         .then((response) => {
           if (response.data == "wrong code") {
             window.location.href = "http://localhost:3000";
@@ -78,7 +76,9 @@ function App() {
             setStatus("Connecting...");
             setLoginStatus("...");
             axios
-              .get("link/getUser", { params: { token } })
+              .get("https://playlist-exporter.herokuapp.com/getUser", {
+                params: { token },
+              })
               .then((response) => {
                 const { id, name } = response.data;
                 setUserid(response.data.id);
@@ -95,7 +95,9 @@ function App() {
   (() => {
     if (userid) {
       axios
-        .get("link/playlist", { params: { userid } })
+        .get("https://playlist-exporter.herokuapp.com/playlist", {
+          params: { userid },
+        })
         .then((response) => {
           const playList = response.data.data;
           setOptions(playList);
@@ -117,7 +119,9 @@ function App() {
       setMusiclist([]);
       setTrack("Loading Tracks...");
       axios
-        .get("link/trk", { params: { list: listID } })
+        .get("https://playlist-exporter.herokuapp.com/trk", {
+          params: { list: listID },
+        })
         .then((response) => {
           const trackList = response.data.data;
           setTotal(response.data.total);

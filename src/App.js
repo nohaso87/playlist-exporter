@@ -69,6 +69,7 @@ function App() {
         .then((response) => {
           if (response.data == "wrong code") {
             window.location.href = "http://nohaso-pe.netlify.app";
+            console.log("wrong code");
           } else {
             const rawToken = response.data.split("&")[0];
             const token = rawToken.split("=")[1];

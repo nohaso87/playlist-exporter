@@ -69,7 +69,6 @@ function App() {
         .then((response) => {
           if (response.data == "wrong code") {
             window.location.href = "http://nohaso-pe.netlify.app";
-            console.log("wrong code");
           } else {
             const rawToken = response.data.split("&")[0];
             const token = rawToken.split("=")[1];
@@ -102,13 +101,6 @@ function App() {
         .catch((error) => console.error(error));
     }
   }, []);
-
-  //This section loads the playlist based on the credentials from the authentication
-  // (() => {
-  //   if (userid) {
-  //   } else {
-  //   }
-  // })(userid);
 
   //This function loads tracks upon clicking the Fetch Title function
   const loadTracks = (e) => {

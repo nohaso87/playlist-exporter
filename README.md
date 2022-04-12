@@ -6,7 +6,7 @@
 <img src="https://api.netlify.com/api/v1/badges/fbf77469-bd51-4172-9eaf-50bd6c20bfca/deploy-status"/>
 </a>
 
-This application access a user account on Deezer streaming platform and exports specified playlists in CSV.
+This application accesses a user account on Deezer streaming platform and exports specified playlists in CSV.
 
 ---
 
